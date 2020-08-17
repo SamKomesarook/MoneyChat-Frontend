@@ -3,8 +3,11 @@ import 'home.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Navigation Basics',
+    title: 'Money Chat',
     home: Login(),
+    routes: {
+      "/home": (_) => new Home(),
+    },
   ));
 }
 
@@ -16,10 +19,7 @@ class Login extends StatelessWidget {
         child: RaisedButton(
           child: Text('Open Money Chat'),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
+            Navigator.pushReplacementNamed(context, "/home");
           },
         ),
       ),
