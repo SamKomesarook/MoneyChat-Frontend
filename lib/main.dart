@@ -106,7 +106,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/home");
+              },
               borderSide: BorderSide(
                 width: 2,
               ),
