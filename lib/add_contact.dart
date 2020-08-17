@@ -10,7 +10,7 @@ class _AddContactState extends State<AddContact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Contacts'),
+        title: Text('Add Contact'),
       ),
       body: Center(
         child: Text('Add Contact'),
