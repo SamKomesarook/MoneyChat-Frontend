@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'contacts.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,17 +15,11 @@ class _HomeState extends State<Home> {
     });
   }
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     // A List of different widget views
-    Text(
-      'Chat',
-    ),
-    Text(
-      'Contacts',
-    ),
-    Text(
-      'Wallet',
-    ),
+    Text('Chat'),
+    Contacts(),
+    Text('Wallet'),
   ];
 
   @override
