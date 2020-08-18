@@ -8,7 +8,7 @@ void main() {
     title: 'Money Chat',
     home: LoginPage(),
     routes: {
-      "/home": (_) => new Home(),
+      "/home": (_) => new Navigation(),
     },
   ));
 }

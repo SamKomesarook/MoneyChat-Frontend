@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'contacts.dart';
 import 'wallet.dart';
 import 'chat.dart';
+import 'home.dart';
 
-class Home extends StatefulWidget {
+class Navigation extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _NavigationState createState() => _NavigationState();
 }
 
-class _HomeState extends State<Home> {
+class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
   String _appBarTitle = "Money Chat";
 
@@ -19,8 +20,10 @@ class _HomeState extends State<Home> {
       if (index == 0) {
         _appBarTitle = 'Money Chat';
       } else if (index == 1) {
-        _appBarTitle = 'Contacts';
+        _appBarTitle = 'Messages';
       } else if (index == 2) {
+        _appBarTitle = 'Contacts';
+      } else if (index == 3) {
         _appBarTitle = 'Money Chat Wallet';
       }
     });
@@ -28,6 +31,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> _widgetOptions = <Widget>[
     // A List of different widget views
+    Home(),
     Chat(),
     Contacts(),
     Wallet(),
@@ -45,16 +49,20 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            title: Text('Chat'),
+            icon: Icon(Icons.home, color: Colors.blueGrey),
+            title: Text('Home', style: TextStyle(color: Colors.blueGrey)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contacts),
-            title: Text('Contacts'),
+            icon: Icon(Icons.chat, color: Colors.blueGrey),
+            title: Text('Chat', style: TextStyle(color: Colors.blueGrey)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet),
-            title: Text('Wallet'),
+            icon: Icon(Icons.contacts, color: Colors.blueGrey),
+            title: Text('Contacts', style: TextStyle(color: Colors.blueGrey)),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet, color: Colors.blueGrey),
+            title: Text('Wallet', style: TextStyle(color: Colors.blueGrey)),
           ),
         ],
         currentIndex: _selectedIndex,
