@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'add_contact.dart';
+import 'add_contact_view.dart';
 
 class Contacts extends StatefulWidget {
   @override

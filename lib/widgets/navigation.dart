@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'contacts.dart';
-import 'wallet.dart';
-import 'chat.dart';
-import 'home.dart';
+import '../view/contacts_view.dart';
+import '../view/wallet_view.dart';
+import '../view/chat_view.dart';
+import '../view/home_view.dart';
 
 class Navigation extends StatefulWidget {
   @override

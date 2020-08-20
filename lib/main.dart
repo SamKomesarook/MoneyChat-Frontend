@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-import 'navigation.dart';
+import 'widgets/navigation.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -38,17 +38,20 @@ class _LoginPageState extends State<LoginPage> {
                 letterSpacing: 1.0,
               ),
             ),
-            OutlineButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/home");
-              },
-              borderSide: BorderSide(
-                width: 2,
-              ),
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "LOG IN WITH GOOGLE",
-                style: TextStyle(),
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: OutlineButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/home");
+                },
+                borderSide: BorderSide(
+                  width: 2,
+                ),
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  "LOG IN WITH GOOGLE",
+                  style: TextStyle(),
+                ),
               ),
             ),
           ],
