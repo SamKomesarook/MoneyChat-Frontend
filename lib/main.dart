@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-
 import 'widgets/navigation.dart';
 
 void main() {
