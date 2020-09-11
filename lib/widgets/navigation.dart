@@ -20,10 +20,8 @@ class _NavigationState extends State<Navigation> {
       if (index == 0) {
         _appBarTitle = 'Money Chat';
       } else if (index == 1) {
-        _appBarTitle = 'Messages';
-      } else if (index == 2) {
         _appBarTitle = 'Contacts';
-      } else if (index == 3) {
+      } else if (index == 2) {
         _appBarTitle = 'Money Chat Wallet';
       }
     });
@@ -32,7 +30,6 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _widgetOptions = <Widget>[
     // A List of different widget views
     Home(),
-    Chat(),
     Contacts(),
     Wallet(),
   ];
@@ -51,10 +48,6 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home, color: Colors.blueGrey),
             title: Text('Home', style: TextStyle(color: Colors.blueGrey)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat, color: Colors.blueGrey),
-            title: Text('Chat', style: TextStyle(color: Colors.blueGrey)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contacts, color: Colors.blueGrey),
