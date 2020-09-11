@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../view/contacts_view.dart';
-import '../view/wallet_view.dart';
-import '../view/chat_view.dart';
 import '../view/home_view.dart';
+import '../view/wallet_view.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _NavigationState extends State<Navigation> {
     // A List of different widget views
     Home(),
     Contacts(),
-    Wallet(),
+    WalletView(),
   ];
 
   @override

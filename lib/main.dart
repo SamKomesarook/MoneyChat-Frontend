@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:moneychat/model/user.dart';
+
+import 'model/session.dart';
+import 'model/user.dart';
+import 'model/wallet.dart';
 import 'widgets/navigation.dart';
 
 void main() {
+  Wallet wallet = new Wallet(150.0);
+  User user = new User('John', 'Smith',
+      'assets/images/profile_pictures/john_smith.jpeg', wallet);
+  Session.shared.user = user;
+
   runApp(MaterialApp(
     title: 'Money Chat',
     home: LoginPage(),
