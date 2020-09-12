@@ -3,15 +3,19 @@ import 'package:flutter/painting.dart';
 import 'package:moneychat/model/user.dart';
 
 import 'model/session.dart';
+import 'model/transaction.dart';
 import 'model/user.dart';
 import 'model/wallet.dart';
 import 'widgets/navigation.dart';
 
 void main() {
+  // Build mock user and data
   Wallet wallet = new Wallet(150.0);
   User user = new User('John', 'Smith',
       'assets/images/profile_pictures/john_smith.jpeg', wallet);
   Session.shared.user = user;
+  Session.shared.user.wallet.lastTransaction =
+      new Transaction(user.contacts.first, 25.00, false);
 
   runApp(MaterialApp(
     title: 'Money Chat',
@@ -35,12 +39,16 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              "assets/images/logo.png",
-              scale: 5,
+            Text(
+              ' Welcome to',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
             ),
             Text(
-              'moneyChat',
+              'Money Chat',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 48,
@@ -49,18 +57,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(40.0),
-              child: OutlineButton(
+              child: RaisedButton(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: Text("LOG IN"),
+                color: Colors.blueGrey[50],
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, "/home");
                 },
-                borderSide: BorderSide(
-                  width: 2,
-                ),
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "LOG IN WITH GOOGLE",
-                  style: TextStyle(),
-                ),
               ),
             ),
           ],

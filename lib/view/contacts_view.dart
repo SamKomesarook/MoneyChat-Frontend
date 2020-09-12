@@ -29,7 +29,7 @@ class _ContactsState extends State<Contacts> {
         backgroundImage: AssetImage(contact.imagePath),
       ),
       title: Text(
-        contact.firstName + ' ' + contact.lastName,
+        contact.getName(),
       ),
       subtitle: Text(contact.phoneNumber),
       trailing: Icon(Icons.keyboard_arrow_right),
