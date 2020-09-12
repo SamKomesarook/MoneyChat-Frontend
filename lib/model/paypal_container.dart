@@ -2,31 +2,68 @@ class paypal_container {
   String firstName;
   String lastName;
 
-  //remove imgpath
-  String imagePath = "";
   String email;
+  String address;
+  String suburb;
+  String state;
 
-  // remove
-  double balance = 0.00;
+  String postcode;
+  String country;
 
   // add address, postcode, suburb, state, country
 
-  paypal_container(firstName, lastName, email, imagePath) {
+  paypal_container(
+      firstName, lastName, email, address, suburb, state, postcode, country) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.imagePath = imagePath;
+
+    this.address = address;
+    this.suburb = suburb;
+    this.state = state;
+    this.postcode = postcode;
+    this.country = country;
   }
 
   List<String> fetchData() {
-    if (imagePath != "") {
-      return [imagePath, firstName, lastName, email];
-    }
-    return [firstName, lastName, email];
+    return [
+      firstName,
+      lastName,
+      email,
+      address,
+      suburb,
+      state,
+      postcode,
+      country
+    ];
   }
 
-  void setImagePath(String imgPath) {
-    this.imagePath = imgPath;
+  List<String> getAddress() {
+    return [address, suburb, state, postcode, country];
+  }
+
+  void setEmail(String email) {
+    this.email = email;
+  }
+
+  void setAddress(String address) {
+    this.address = address;
+  }
+
+  void setSuburb(String suburb) {
+    this.suburb = suburb;
+  }
+
+  void setState(String state) {
+    this.state = state;
+  }
+
+  void setPostcode(String postcode) {
+    this.postcode = postcode;
+  }
+
+  void setCountry(String country) {
+    this.country = country;
   }
 
   void setFirstName(String newFirstName) {
@@ -35,19 +72,6 @@ class paypal_container {
 
   void setLastName(String newLastName) {
     this.lastName = newLastName;
-  }
-
-  bool sendMoney(double amount) {
-    if (this.balance - amount >= 0.00) {
-      this.balance -= amount;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  String getImagePath() {
-    return imagePath;
   }
 
   String getFirstName() {
