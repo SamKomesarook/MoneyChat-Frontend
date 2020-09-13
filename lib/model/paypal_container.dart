@@ -1,84 +1,83 @@
 class paypal_container {
-  String firstName;
-  String lastName;
+  String _firstName;
+  String _lastName;
 
-  String email;
-  String address;
-  String suburb;
-  String state;
+  String _email;
+  String _address;
+  String _suburb;
+  String _state;
 
-  String postcode;
-  String country;
+  String _postcode;
+  String _country;
 
   // add address, postcode, suburb, state, country
 
   paypal_container(
       firstName, lastName, email, address, suburb, state, postcode, country) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._email = email;
 
-    this.address = address;
-    this.suburb = suburb;
-    this.state = state;
-    this.postcode = postcode;
-    this.country = country;
+    this._address = address;
+    this._suburb = suburb;
+    this._state = state;
+    this._postcode = postcode;
+    this._country = country;
   }
 
   List<String> fetchData() {
     return [
-      firstName,
-      lastName,
-      email,
-      address,
-      suburb,
-      state,
-      postcode,
-      country
+      _firstName,
+      _lastName,
+      _email,
+      _address,
+      _suburb,
+      _state,
+      _postcode,
+      _country
     ];
   }
 
   List<String> getAddress() {
-    return [address, suburb, state, postcode, country];
+    return [_address, _suburb, _state, _postcode, _country];
   }
 
-  void setEmail(String email) {
-    this.email = email;
+
+  set country(String value) {
+    _country = value;
   }
 
-  void setAddress(String address) {
-    this.address = address;
+  set postcode(String value) {
+    _postcode = value;
   }
 
-  void setSuburb(String suburb) {
-    this.suburb = suburb;
+  set state(String value) {
+    _state = value;
   }
 
-  void setState(String state) {
-    this.state = state;
+  set suburb(String value) {
+    _suburb = value;
   }
 
-  void setPostcode(String postcode) {
-    this.postcode = postcode;
+  set address(String value) {
+    _address = value;
   }
 
-  void setCountry(String country) {
-    this.country = country;
+  String get email => _email;
+
+  set email(String value) {
+    _email = value;
   }
 
-  void setFirstName(String newFirstName) {
-    this.firstName = newFirstName;
+  String get lastName => _lastName;
+
+  set lastName(String value) {
+    _lastName = value;
   }
 
-  void setLastName(String newLastName) {
-    this.lastName = newLastName;
-  }
+  String get firstName => _firstName;
 
-  String getFirstName() {
-    return firstName;
-  }
-
-  String getLastName() {
-    return lastName;
+  set firstName(String value) {
+    _firstName = value;
   }
 }
