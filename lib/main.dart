@@ -15,7 +15,7 @@ void main() {
       'assets/images/profile_pictures/john_smith.jpeg', wallet);
   Session.shared.user = user;
   Session.shared.user.wallet.lastTransaction =
-      new Transaction(user.contacts.first, 25.00, false);
+      new Transaction(user.contacts[5], 25.00, false);
 
   runApp(MaterialApp(
     title: 'Money Chat',

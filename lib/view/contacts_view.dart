@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneychat/style/style.dart';
 import 'package:moneychat/view/chat_view.dart';
 
 import '../model/contact.dart';
@@ -11,11 +12,12 @@ class Contacts extends StatefulWidget {
 }
 
 class _ContactsState extends State<Contacts> {
+  // Build contact list
   List<Widget> buildContacts() {
     List<Widget> contacts = [];
 
-    Session.shared.user.contacts.forEach((element) {
-      contacts.add(buildContact(element));
+    Session.shared.user.contacts.forEach((key, value) {
+      contacts.add(buildContact(value));
       contacts.add(buildDivider());
     });
 
@@ -61,8 +63,8 @@ class _ContactsState extends State<Contacts> {
             children: buildContacts(),
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
+            backgroundColor: primaryColor,
+            foregroundColor: backgroundColor,
             onPressed: () {
               Navigator.push(
                 context,

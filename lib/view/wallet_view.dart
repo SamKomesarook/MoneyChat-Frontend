@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../model/session.dart';
 import '../model/transaction.dart';
 import '../model/user.dart';
-import '../style/font_style.dart';
+import '../style/style.dart';
 import 'add_to_balance.dart';
 
 class WalletView extends StatefulWidget {
@@ -25,7 +25,7 @@ class _WalletViewState extends State<WalletView> {
         SizedBox(
           width: 25.0,
         ),
-        Text(_user.firstName + ' ' + _user.lastName, style: headingStyle),
+        Text(_user.getName(), style: headingStyle),
       ],
     );
   }
@@ -80,8 +80,8 @@ class _WalletViewState extends State<WalletView> {
               style: sendingTextStyle),
           Row(
             children: <Widget>[
+              Text('To', style: sendingTextStyle),
               Icon(Icons.arrow_forward, color: Colors.red),
-              Text('From', style: sendingTextStyle),
             ],
           ),
         ],
@@ -99,7 +99,7 @@ class _WalletViewState extends State<WalletView> {
             child: buildProfile(),
           ),
           Card(
-            color: Colors.blue,
+            color: primaryColor,
             margin: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
             child: ListTile(
               contentPadding: const EdgeInsets.all(30.0),
@@ -127,10 +127,7 @@ class _WalletViewState extends State<WalletView> {
               color: Colors.white70,
               child: Text(
                 'Add to Balance',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.blueGrey,
-                ),
+                style: buttonTextStyle,
               ),
               onPressed: () {
                 Navigator.push(
@@ -156,7 +153,7 @@ class _WalletViewState extends State<WalletView> {
           height: 20.0,
           width: 350.0,
           child: Divider(
-            color: Colors.blueGrey,
+            color: accentColor,
           ),
         ),
       ],

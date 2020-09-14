@@ -1,15 +1,20 @@
 class Contact {
+  int _ID;
   String _firstName;
   String _lastName;
   String _imagePath;
   String _phoneNumber;
 
-  Contact(firstName, lastName, phoneNumber, imagePath) {
+  Contact(int ID, String firstName, String lastName, String phoneNumber,
+      String imagePath) {
+    _ID = ID;
     this._firstName = firstName;
     this._lastName = lastName;
     this._phoneNumber = phoneNumber;
     this._imagePath = imagePath;
   }
+
+  int get ID => _ID;
 
   List<String> fetchContact() {
     if (_imagePath != "") {
@@ -45,28 +50,4 @@ class Contact {
   set firstName(String value) {
     _firstName = value;
   }
-
-//  void setImagePath(String imgPath) {
-//    this._imagePath = imgPath;
-//  }
-//
-//  void setFirstName(String newFirstName) {
-//    this._firstName = newFirstName;
-//  }
-//
-//  void setLastName(String newLastName) {
-//    this._lastName = newLastName;
-//  }
-//
-//  String getImagePath() {
-//    return _imagePath;
-//  }
-//
-//  String getFirstName() {
-//    return _firstName;
-//  }
-//
-//  String getLastName() {
-//    return _lastName;
-//  }
 }

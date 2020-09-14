@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../style/style.dart';
 import '../view/contacts_view.dart';
 import '../view/home_view.dart';
 import '../view/wallet_view.dart';
@@ -46,16 +47,16 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.blueGrey),
-            title: Text('Home', style: TextStyle(color: Colors.blueGrey)),
+            icon: Icon(Icons.home, color: secondaryColor),
+            title: Text('Home', style: TextStyle(color: secondaryColor)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contacts, color: Colors.blueGrey),
-            title: Text('Contacts', style: TextStyle(color: Colors.blueGrey)),
+            icon: Icon(Icons.contacts, color: secondaryColor),
+            title: Text('Contacts', style: TextStyle(color: secondaryColor)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet, color: Colors.blueGrey),
-            title: Text('Wallet', style: TextStyle(color: Colors.blueGrey)),
+            icon: Icon(Icons.account_balance_wallet, color: secondaryColor),
+            title: Text('Wallet', style: TextStyle(color: secondaryColor)),
           ),
         ],
         currentIndex: _selectedIndex,
