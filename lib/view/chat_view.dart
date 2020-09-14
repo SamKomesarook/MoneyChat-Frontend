@@ -26,20 +26,11 @@ class _ChatState extends State<Chat> {
 
   _ChatState(Contact contact) {
     _contact = contact;
-
-    if (Session.shared.user.conversations.containsKey(contact.ID)) {
-      Session.shared.user.conversations[contact.ID].messages.forEach((element) {
-        print(element.content + ' sent at ' + element.getTime());
-      });
-    }
   }
 
   void _sendMessage() {
     //TODO: send message xmpp POST
-    print('\"' +
-        _textEditingController.value.text +
-        '\" sent to ' +
-        _contact.getName());
+
     Message message =
         new Message(_textEditingController.value.text, DateTime.now());
     Session.shared.user.newMessageSent(message, _contact);
