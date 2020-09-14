@@ -1,43 +1,53 @@
 class Contact {
-  String firstName;
-  String lastName;
-  String imagePath = "";
-  String googleAccount;
+  int _ID;
+  String _firstName;
+  String _lastName;
+  String _imagePath;
+  String _phoneNumber;
 
-  Contact(firstName, lastName, googleAccount) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.googleAccount = googleAccount;
+  Contact(int ID, String firstName, String lastName, String phoneNumber,
+      String imagePath) {
+    _ID = ID;
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._phoneNumber = phoneNumber;
+    this._imagePath = imagePath;
   }
+
+  int get ID => _ID;
 
   List<String> fetchContact() {
-    if (imagePath != "") {
-      return [imagePath, firstName, lastName, googleAccount];
+    if (_imagePath != "") {
+      return [_imagePath, _firstName, _lastName];
     }
-    return [firstName, lastName, googleAccount];
+    return [_firstName, _lastName];
   }
 
-  void setImagePath(String imgPath) {
-    this.imagePath = imgPath;
+  String getName() {
+    return firstName + ' ' + lastName;
   }
 
-  void setFirstName(String newFirstName) {
-    this.firstName = newFirstName;
+  String get phoneNumber => _phoneNumber;
+
+  set phoneNumber(String value) {
+    _phoneNumber = value;
   }
 
-  void setLastName(String newLastName) {
-    this.lastName = newLastName;
+  String get imagePath => _imagePath;
+
+  set imagePath(String value) {
+    _imagePath = value;
   }
 
-  String getImagePath() {
-    return imagePath;
+  String get lastName => _lastName;
+
+  set lastName(String value) {
+    _lastName = value;
   }
 
-  String getFirstName() {
-    return firstName;
-  }
+  String get firstName => _firstName;
 
-  String getLastName() {
-    return lastName;
+  set firstName(String value) {
+    _firstName = value;
   }
 }
