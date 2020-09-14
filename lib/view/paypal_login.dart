@@ -44,7 +44,7 @@ class LoginWidget extends StatelessWidget {
 
         children: <Widget>[
           Container(
-            child: Image.asset("assets/images/paypal-logo.png"),
+            child: Image.asset("assets/images/paypal_logo.png"),
           ),
           TextFormField(
             decoration: InputDecoration(
