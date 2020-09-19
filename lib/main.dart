@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:moneychat/model/user.dart';
+import 'package:moneychat/view/Money_Chat_Login_Page.dart';
+//import 'package:moneychat/view/paypal_login.dart';
 
 import 'model/session.dart';
 import 'model/transaction.dart';
@@ -62,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text("LOG IN"),
                 color: Colors.blueGrey[50],
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "/home");
+//                  Navigator.pushReplacementNamed(context, "/home");
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainLoginPage()));
                 },
               ),
             ),

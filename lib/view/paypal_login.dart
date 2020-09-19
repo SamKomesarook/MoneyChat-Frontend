@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MainWidget extends StatefulWidget {
+class PayPalMainWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MainWidgetState();
+    return PayPalMainWidgetState();
   }
 }
 
-class MainWidgetState extends State<MainWidget> {
+class PayPalMainWidgetState extends State<PayPalMainWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
