@@ -14,6 +14,7 @@ class WalletView extends StatefulWidget {
 class _WalletViewState extends State<WalletView> {
   User _user = Session.shared.user;
 
+
   Widget buildProfile() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
