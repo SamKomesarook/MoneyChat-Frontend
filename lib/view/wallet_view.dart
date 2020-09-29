@@ -169,16 +169,8 @@ class _WalletViewState extends State<WalletView> {
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 75),
 
           ),
-          // Padding(
-          //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 75),
-          //   child: RaisedButton(
-          //     color: Colors.white70,
-          //     child: Icon(Icons.payment),
-          //     onPressed: _payGooglePay,
-          //   ),
-          // ),
           displayDivider(),
-          buildTransaction(_user.wallet.lastTransaction),
+          buildTransaction(_user.wallet.transactions.first),
         ],
       ),
     );
