@@ -2,21 +2,38 @@ PODS:
   - contacts_service (0.2.2):
     - Flutter
   - Flutter (1.0.0)
+  - square_in_app_payments (1.3.0):
+    - Flutter
+    - SquareBuyerVerificationSDK (= 1.3.0)
+    - SquareInAppPaymentsSDK (= 1.4.0)
+  - SquareBuyerVerificationSDK (1.3.0)
+  - SquareInAppPaymentsSDK (1.4.0)
 
 DEPENDENCIES:
   - contacts_service (from `.symlinks/plugins/contacts_service/ios`)
   - Flutter (from `Flutter`)
+  - square_in_app_payments (from `.symlinks/plugins/square_in_app_payments/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SquareBuyerVerificationSDK
+    - SquareInAppPaymentsSDK
 
 EXTERNAL SOURCES:
   contacts_service:
     :path: ".symlinks/plugins/contacts_service/ios"
   Flutter:
     :path: Flutter
+  square_in_app_payments:
+    :path: ".symlinks/plugins/square_in_app_payments/ios"
 
 SPEC CHECKSUMS:
   contacts_service: 849e1f84281804c8bfbec1b4c3eedcb23c5d3eca
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  square_in_app_payments: 339aa5d1c828be189639090149e0fb303c2d9812
+  SquareBuyerVerificationSDK: 6a73cc3b073d8e613cb1fe8643600ff9ac4d6373
+  SquareInAppPaymentsSDK: 6c3293e5600c121bbdc5499ffa3b3976e2cf0054
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
 
 COCOAPODS: 1.9.3
