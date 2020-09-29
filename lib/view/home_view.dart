@@ -15,6 +15,7 @@ class _HomeState extends State<Home> {
   List<Widget> buildConversations() {
     List<Widget> conversations = [];
 
+    // No previous conversations
     if (Session.shared.user.conversations.length == 0) {
       conversations.add(buildSuchEmpty());
       return conversations;

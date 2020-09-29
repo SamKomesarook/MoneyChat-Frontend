@@ -2,10 +2,11 @@ import 'package:moneychat/model/transaction.dart';
 
 class Wallet {
   double _balance;
-  Transaction _lastTransaction;
+  List<Transaction> _transactions;
 
   Wallet(double balance) {
     this._balance = balance;
+    this._transactions = new List<Transaction>();
   }
 
   // Getter and Setters
@@ -15,9 +16,15 @@ class Wallet {
     _balance = value;
   }
 
-  Transaction get lastTransaction => _lastTransaction;
+  List<Transaction> get transactions => _transactions;
 
-  set lastTransaction(Transaction value) {
-    _lastTransaction = value;
+  set transactions(List<Transaction> value) {
+    _transactions = value;
+  }
+
+  void addTransaction(Transaction transaction) {
+    if (transaction != null) {
+      _transactions.add(transaction);
+    }
   }
 }

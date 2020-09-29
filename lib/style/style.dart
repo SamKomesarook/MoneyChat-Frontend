@@ -22,3 +22,14 @@ final Color accentColor = Colors.blueGrey.shade400;
 final Color opaqueAccentColor = Colors.blueGrey.shade200;
 final Color fadedBody = Colors.grey;
 const Color sentMessageBoxColor = Color(0xff2E4981);
+class Style{
+    static const Color loginGradientStart = Colors.white;
+    static const Color loginGradientEnd = Colors.blue;
+
+    static const LinearGradient primaryGradient = const LinearGradient(
+        colors: const [loginGradientStart, loginGradientEnd],
+        stops: const [0.0, 1.0],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+    );
+}

@@ -7,6 +7,7 @@ import 'message.dart';
 import 'wallet.dart';
 
 class User {
+  String _userAccount;
   String _firstName;
   String _lastName;
   String _imgPath;
@@ -87,4 +88,6 @@ class User {
   String get lastName => _lastName;
 
   HashMap<int, Conversation> get conversations => _conversations;
+
+  String get userAccount => _userAccount;
 }
