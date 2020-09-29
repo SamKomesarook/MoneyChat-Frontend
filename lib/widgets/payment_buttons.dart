@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:moneychat/view/colors.dart';
+import 'package:moneychat/style/colors.dart';
 
 class PaymentButton extends StatelessWidget {
   final String text;
@@ -16,7 +15,7 @@ class PaymentButton extends StatelessWidget {
               child: Text(text,
                   style: TextStyle(color: Colors.black, fontSize: 18))),
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           color: Colors.white,
           onPressed: onPressed));
 }
