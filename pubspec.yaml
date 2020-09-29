@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   contacts_service: ^0.4.6
+  square_in_app_payments: ^1.4.0
   flutter:
     sdk: flutter
   date_format: ^1.0.4
