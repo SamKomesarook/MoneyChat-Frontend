@@ -28,12 +28,24 @@ class _ChatState extends State<Chat> {
     _contact = contact;
   }
 
-  void _sendMessage() {
-    //TODO: send message xmpp POST
+  void _sendMessage() async {
+    //TODO: send message http/xmpp POST
+//    final String apiURL = "Enter a valid URL"; // TODO: Update, Server URL
+//
+//    final response = await http.post(apiURL, body: {
+//      "type": "normal",
+//      "from": Session.shared.user.userAccount, // TODO: Set in the User class
+//      "to": "user1@localhost", // TODO: Update, to contact
+//      "subject": "",
+//      "body": _textEditingController.value.text
+//    });
 
+    // Frontend only message
     Message message =
         new Message(_textEditingController.value.text, DateTime.now());
     Session.shared.user.newMessageSent(message, _contact);
+
+    // Clear the message input
     _textEditingController.clear();
   }
 
