@@ -23,7 +23,6 @@ class Chat extends StatefulWidget {
 
 class _ChatState extends State<Chat> {
   Contact _contact;
-  double _paymentTotal = 0;
   ScrollController _messageListController = new ScrollController();
 
   final TextEditingController _textEditingController =
@@ -168,6 +167,11 @@ class _ChatState extends State<Chat> {
         DateTime.now(), MessageType.sentMessage);
     Session.shared.user.newMessageSent(message, _contact);
 
+    //TODO: testing echo message sent
+    Message message2 = new Message(_textEditingController.value.text,
+        DateTime.now(), MessageType.receivedMessage);
+    Session.shared.user.newMessageSent(message2, _contact);
+
     // Clear the message input
     _textEditingController.clear();
   }
@@ -195,7 +199,7 @@ class _ChatState extends State<Chat> {
           return Container(
             child: Text(
               message.content,
-              style: messageContentStyle,
+              style: sentMessageContentStyle,
             ),
             padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             width: 200.0,
@@ -209,7 +213,16 @@ class _ChatState extends State<Chat> {
 
       case MessageType.receivedMessage:
         {
-          //statements;
+          return Container(
+              child: Text(
+                message.content,
+              ),
+              padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+              width: 200.0,
+              decoration: BoxDecoration(
+                  color: receivedMessageColor,
+                  borderRadius: BorderRadius.circular(8.0)),
+              margin: EdgeInsets.fromLTRB(8, 8, 200, 0));
         }
         break;
 
@@ -218,7 +231,7 @@ class _ChatState extends State<Chat> {
           return Container(
             child: Text(
               message.content,
-              style: messageContentStyle,
+              style: sentMessageContentStyle,
             ),
             padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             width: 200.0,
@@ -246,10 +259,7 @@ class _ChatState extends State<Chat> {
             FocusedMenuHolder(
                 blurSize: 1,
                 blurBackgroundColor: Colors.white,
-                menuWidth: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.5,
+                menuWidth: MediaQuery.of(context).size.width * 0.5,
                 onPressed: () {},
                 menuItems: <FocusedMenuItem>[
                   FocusedMenuItem(

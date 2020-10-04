@@ -149,13 +149,13 @@ class _WalletViewState extends State<WalletView> {
                 text: (Platform.isAndroid) ? "Google Pay" : "Apple Pay",
                 onPressed: (Platform.isAndroid)
                     ? () {
-                  // Navigator.pop(context, PaymentType.cardPayment);
-                  _payGooglePay();
-                }
+                        // Navigator.pop(context, PaymentType.cardPayment);
+                        _payGooglePay();
+                      }
                     : () {
-                  // Navigator.pop(context, PaymentType.cardPayment);
-                  _payApplePay();
-                },
+                        // Navigator.pop(context, PaymentType.cardPayment);
+                        _payApplePay();
+                      },
               ),
               PaymentButton(
                 text: "Gift Card",
