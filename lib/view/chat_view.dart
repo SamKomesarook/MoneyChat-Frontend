@@ -177,7 +177,7 @@ class _ChatState extends State<Chat> {
       return ListView.builder(
           controller: _messageListController,
           itemCount:
-          Session.shared.user.conversations[_contact.ID].messages.length,
+              Session.shared.user.conversations[_contact.ID].messages.length,
           itemBuilder: (context, index) {
             return buildMessageItem(
                 Session.shared.user.conversations[_contact.ID].messages[index]);

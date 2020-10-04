@@ -25,7 +25,7 @@ class WalletView extends StatefulWidget {
 class _WalletViewState extends State<WalletView> {
   User _user = Session.shared.user;
   static final GlobalKey<ScaffoldState> scaffoldKey =
-  GlobalKey<ScaffoldState>();
+      GlobalKey<ScaffoldState>();
 
   Widget buildProfile() {
     return Row(
