@@ -130,9 +130,33 @@ class _ChatState extends State<Chat> {
                         buildMessageList();
                       });
                     } else {
-                      // Payment failed
-                      print('Payment failed');
                       Navigator.pop(context);
+
+                      // Payment failed
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Insufficient Funds'),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text('Your payment was declined'),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text('Close'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     }
                   },
                 ),
@@ -263,17 +287,26 @@ class _ChatState extends State<Chat> {
                 onPressed: () {},
                 menuItems: <FocusedMenuItem>[
                   FocusedMenuItem(
-                      title: Text('Camera'),
-                      trailingIcon: Icon(Icons.photo_camera),
-                      onPressed: () {
-                        print('open camera');
-                      }),
+                    title: Text('Camera'),
+                    trailingIcon: Icon(Icons.photo_camera),
+                    onPressed: () {
+                      print('Opening camera...');
+                    },
+                  ),
                   FocusedMenuItem(
-                      title: Text('Send Money'),
-                      trailingIcon: Icon(Icons.attach_money),
-                      onPressed: () {
-                        _sendMoney();
-                      }),
+                    title: Text('Send Money'),
+                    trailingIcon: Icon(Icons.attach_money),
+                    onPressed: () {
+                      _sendMoney();
+                    },
+                  ),
+                  FocusedMenuItem(
+                    title: Text('Send Attachment'),
+                    trailingIcon: Icon(Icons.attach_file),
+                    onPressed: () {
+                      print('Sending attachment...');
+                    },
+                  ),
                 ],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

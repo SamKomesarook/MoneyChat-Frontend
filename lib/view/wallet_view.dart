@@ -290,6 +290,6 @@ void _CardEntryComplete() {
       context: _WalletViewState.scaffoldKey.currentContext,
       title: "Your order was successful",
       description:
-      "Go to your Square dashboard to see this order reflected in the sales tab.");
+          "Go to your Square dashboard to see this order reflected in the sales tab.");
   //Successfully charged
 }
