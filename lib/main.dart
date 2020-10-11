@@ -12,22 +12,6 @@ import 'view/Register_content.dart';
 import 'widgets/navigation.dart';
 
 void main() {
-  //TODO: wallet is for testing (mock data)
-  // Build mock user and data
-  Wallet wallet = new Wallet(150.0);
-  User user = new User('david@34.123.149.202', 'John', 'Smith',
-      'assets/images/profile_pictures/john_smith.jpeg', wallet);
-  Session.shared.user = user;
-
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[5], 25.00, false));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[2], 15.00, true));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[3], 5.00, true));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[7], 20.00, true));
-
   runApp(MaterialApp(
     title: 'Money Chat',
     home: MainLoginPage(),
@@ -125,52 +109,52 @@ class _MainLoginPageState extends State<MainLoginPage>
                       children: <Widget>[
                         Expanded(
                             child: new Container(
-                              decoration: _currentPage == 0
-                                  ? BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                color: Colors.white,
-                              )
-                                  : null,
-                              child: new Center(
-                                child: new FlatButton(
-                                  onPressed: () {
-                                    _pageController.animateToPage(0,
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.decelerate);
-                                  },
-                                  child: new Text(
-                                    "Existing",
-                                    style: TextStyle(fontSize: 16),
+                          decoration: _currentPage == 0
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
                                   ),
-                                ),
+                                  color: Colors.white,
+                                )
+                              : null,
+                          child: new Center(
+                            child: new FlatButton(
+                              onPressed: () {
+                                _pageController.animateToPage(0,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.decelerate);
+                              },
+                              child: new Text(
+                                "Existing",
+                                style: TextStyle(fontSize: 16),
                               ),
-                            )),
+                            ),
+                          ),
+                        )),
                         Expanded(
                             child: new Container(
-                              decoration: _currentPage == 1
-                                  ? BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                color: Colors.white,
-                              )
-                                  : null,
-                              child: new Center(
-                                child: new FlatButton(
-                                  onPressed: () {
-                                    _pageController.animateToPage(1,
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.decelerate);
-                                  },
-                                  child: new Text(
-                                    "Register",
-                                    style: TextStyle(fontSize: 16),
+                          decoration: _currentPage == 1
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
                                   ),
-                                ),
+                                  color: Colors.white,
+                                )
+                              : null,
+                          child: new Center(
+                            child: new FlatButton(
+                              onPressed: () {
+                                _pageController.animateToPage(1,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.decelerate);
+                              },
+                              child: new Text(
+                                "Register",
+                                style: TextStyle(fontSize: 16),
                               ),
-                            )),
+                            ),
+                          ),
+                        )),
                       ],
                     ),
                   ),

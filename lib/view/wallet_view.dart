@@ -43,7 +43,13 @@ class _WalletViewState extends State<WalletView> {
     );
   }
 
-  Widget buildTransaction(Transaction lastTransaction) {
+  Widget buildTransaction() {
+    if (_user.wallet.transactions.last == null) {
+      return Text('No previous transactions');
+    }
+
+    Transaction lastTransaction = _user.wallet.transactions.last;
+
     return Column(
       children: <Widget>[
         Row(
@@ -170,7 +176,7 @@ class _WalletViewState extends State<WalletView> {
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 75),
           ),
           displayDivider(),
-          buildTransaction(_user.wallet.transactions.last),
+          buildTransaction(),
         ],
       ),
     );

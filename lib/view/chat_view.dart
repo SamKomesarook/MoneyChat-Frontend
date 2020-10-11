@@ -186,7 +186,7 @@ class _ChatState extends State<Chat> {
     var receiverJid = xmpp.Jid.fromFullJid(receiver);
     // Send message
     xmpp.MessageHandler messageHandler =
-    xmpp.MessageHandler.getInstance(Session.shared.user.connection);
+        xmpp.MessageHandler.getInstance(Session.shared.user.connection);
     messageHandler.sendMessage(receiverJid, message.content);
 
     // Add to frontend list

@@ -21,7 +21,7 @@ class User {
 
   User(String xmppAddress, String firstName, String lastName, String imgPath,
       Wallet wallet) {
-    _xmppAddress = xmppAddress;
+    _xmppAddress = xmppAddress + '@34.123.149.202';
     _firstName = firstName;
     _lastName = lastName;
     _imgPath = imgPath;
@@ -29,13 +29,12 @@ class User {
     _contacts = new HashMap<int, Contact>();
     createContacts();
     _conversations = new HashMap<int, Conversation>();
-    connectToServer('david', '34.123.149.202', '1234');
   }
 
-  void connectToServer(String accountName, String host, String password) {
+  void connectToServer(String password) {
     var account = xmpp.XmppAccountSettings(
-        _xmppAddress, accountName, host, password, 5222,
-        host: host, resource: 'xmppstone');
+        _xmppAddress, _firstName, '34.123.149.202', password, 5222,
+        host: '34.123.149.202', resource: 'xmppstone');
     _connection = xmpp.Connection(account);
     _connection.connect();
 

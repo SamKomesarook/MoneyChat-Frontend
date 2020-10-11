@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:moneychat/model/transaction.dart';
+
+import '../model/session.dart';
+import '../model/user.dart';
+import '../model/wallet.dart';
 import '../style/style.dart' as theme;
 
 class SignInPage extends StatefulWidget {
@@ -8,10 +13,12 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
   FocusNode phoneNumFocusNode = new FocusNode();
   FocusNode passwordFocusNode = new FocusNode();
   FocusScopeNode focusScopeNode = new FocusScopeNode();
+
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   GlobalKey<FormState> _signInFormKey = new GlobalKey();
 
@@ -28,51 +35,54 @@ class _SignInPageState extends State<SignInPage> {
         children: <Widget>[
           new Column(
             children: <Widget>[
-
               buildSignInTextForm(),
-
               Padding(
                 padding: const EdgeInsets.only(top: 70),
-                child: new Text("Forgot Password?",
+                child: new Text(
+                  "Forgot Password?",
                   style: new TextStyle(
                       fontSize: 16,
                       color: Colors.white,
-                      decoration: TextDecoration.underline),),
+                      decoration: TextDecoration.underline),
+                ),
               ),
-
-
-              Padding(padding: EdgeInsets.only(top: 10),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
                 child: new Row(
 //                          mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Container(height: 1,
+                    new Container(
+                      height: 1,
                       width: 100,
                       decoration: BoxDecoration(
-                          gradient: new LinearGradient(
-                              colors: [ Colors.white10,
-                                Colors.white,
-                              ])
-                      ),
+                          gradient: new LinearGradient(colors: [
+                        Colors.white10,
+                        Colors.white,
+                      ])),
                     ),
                     new Padding(
                       padding: EdgeInsets.only(left: 15, right: 15),
-                      child: new Text("Or", style: new TextStyle(
-                          fontSize: 16, color: Colors.white),),),
-                    new Container(height: 1,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          gradient: new LinearGradient(
-                              colors: [ Colors.white,
-                                Colors.white10,
-                              ])
+                      child: new Text(
+                        "Or",
+                        style: new TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
+                    new Container(
+                      height: 1,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          gradient: new LinearGradient(colors: [
+                        Colors.white,
+                        Colors.white10,
+                      ])),
+                    ),
                   ],
-                ),),
-
-
-              new SizedBox(height: 10,),
+                ),
+              ),
+              new SizedBox(
+                height: 10,
+              ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -82,26 +92,37 @@ class _SignInPageState extends State<SignInPage> {
                       shape: BoxShape.circle,
                       color: Colors.white,
                     ),
-                    child: new IconButton(icon: Icon(
-                      FontAwesomeIcons.facebookF, color: Color(0xFF0084ff),),
+                    child: new IconButton(
+                        icon: Icon(
+                          FontAwesomeIcons.facebookF,
+                          color: Color(0xFF0084ff),
+                        ),
                         onPressed: null),
                   ),
-                  new SizedBox(width: 40,),
+                  new SizedBox(
+                    width: 40,
+                  ),
                   new Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                     ),
-                    child: new IconButton(icon: Icon(
-                      FontAwesomeIcons.google, color: Color(0xFF0084ff),),
+                    child: new IconButton(
+                        icon: Icon(
+                          FontAwesomeIcons.google,
+                          color: Color(0xFF0084ff),
+                        ),
                         onPressed: null),
                   ),
                 ],
               )
             ],
           ),
-          new Positioned(child: buildSignInButton(), top: 200,)
+          new Positioned(
+            child: buildSignInButton(),
+            top: 200,
+          )
         ],
       ),
     );
@@ -114,14 +135,11 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-
   Widget buildSignInTextForm() {
     return new Container(
-      decoration:
-      new BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8))
-          , color: Colors.white
-      ),
+      decoration: new BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          color: Colors.white),
       width: 300,
       height: 190,
       child: new Form(
@@ -136,7 +154,7 @@ class _SignInPageState extends State<SignInPage> {
                 padding: const EdgeInsets.only(
                     left: 25, right: 25, top: 20, bottom: 20),
                 child: new TextFormField(
-
+                  controller: _usernameController,
                   focusNode: phoneNumFocusNode,
                   onEditingComplete: () {
                     if (focusScopeNode == null) {
@@ -144,20 +162,20 @@ class _SignInPageState extends State<SignInPage> {
                     }
                     focusScopeNode.requestFocus(passwordFocusNode);
                   },
-
                   decoration: new InputDecoration(
-                      icon: new Icon(Icons.phone, color: Colors.black,),
-                      hintText: "Phone Number",
-                      border: InputBorder.none
-                  ),
+                      icon: new Icon(
+                        Icons.people,
+                        color: Colors.black,
+                      ),
+                      hintText: "Username",
+                      border: InputBorder.none),
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Phone Number can not be empty!";
+                      return "Username can not be empty!";
                     }
                   },
-                  onSaved: (value) {
-                  },
+                  onSaved: (value) {},
                 ),
               ),
             ),
@@ -168,61 +186,84 @@ class _SignInPageState extends State<SignInPage> {
             ),
             Flexible(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 25, right: 25, top: 20),
+                padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
                 child: new TextFormField(
+                  controller: _passwordController,
                   focusNode: passwordFocusNode,
                   decoration: new InputDecoration(
-                      icon: new Icon(Icons.lock, color: Colors.black,),
+                      icon: new Icon(
+                        Icons.lock,
+                        color: Colors.black,
+                      ),
                       hintText: "Password",
                       border: InputBorder.none,
-                      suffixIcon: new IconButton(icon: new Icon(
-                        Icons.remove_red_eye, color: Colors.black,),
-                          onPressed: showPassWord)
-                  ),
-
+                      suffixIcon: new IconButton(
+                          icon: new Icon(
+                            Icons.remove_red_eye,
+                            color: Colors.black,
+                          ),
+                          onPressed: showPassWord)),
                   obscureText: !isShowPassWord,
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   validator: (value) {
-                    if (value == null || value.isEmpty || value.length < 6) {
-                      return "Password'length must longer than 6!";
+                    if (value == null || value.isEmpty || value.length < 4) {
+                      return "Password'length must longer than 4!";
                     }
                   },
-                  onSaved: (value) {
-                  },
+                  onSaved: (value) {},
                 ),
               ),
             ),
           ],
-        ),),
+        ),
+      ),
     );
   }
 
-
   Widget buildSignInButton() {
-    return
-      new GestureDetector(
-        child: new Container(
-          padding: EdgeInsets.only(left: 42, right: 42, top: 10, bottom: 10),
-          decoration: new BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            gradient: theme.Style.primaryGradient,
-          ),
-          child: new Text(
-            "LOGIN", style: new TextStyle(fontSize: 25, color: Colors.white),),
+    return new GestureDetector(
+      child: new Container(
+        padding: EdgeInsets.only(left: 42, right: 42, top: 10, bottom: 10),
+        decoration: new BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          gradient: theme.Style.primaryGradient,
         ),
-        onTap: () {
+        child: new Text(
+          "LOGIN",
+          style: new TextStyle(fontSize: 25, color: Colors.white),
+        ),
+      ),
+      onTap: () {
+        if (_signInFormKey.currentState.validate()) {
+          _signInFormKey.currentState.save();
 
-          if (_signInFormKey.currentState.validate()) {
+          String username = _usernameController.value.text;
+          String password = _passwordController.value.text;
 
-            Scaffold.of(context).showSnackBar(
-                new SnackBar(content: new Text("In processing....")));
-            _signInFormKey.currentState.save();
-            Navigator.pushReplacementNamed(context, "/home");
-          }
+          //TODO: wallet is for testing (mock data)
+          // Build mock user and data
+          Wallet wallet = new Wallet(150.0);
+
+          // Create user
+          User user = new User(username, username, 'Smith',
+              'assets/images/profile_pictures/john_smith.jpeg', wallet);
+          Session.shared.user = user;
+          Session.shared.user.connectToServer(password);
+
+          // Add a transaction to test
+          Session.shared.user.wallet.addTransaction(
+              new Transaction(Session.shared.user.contacts[5], 25.00, false));
+//          Session.shared.user.wallet.addTransaction(
+//              new Transaction(Session.shared.user.contacts[2], 15.00, true));
+//          Session.shared.user.wallet.addTransaction(
+//              new Transaction(Session.shared.user.contacts[3], 5.00, true));
+//          Session.shared.user.wallet.addTransaction(
+//              new Transaction(Session.shared.user.contacts[7], 20.00, true));
+
+          Navigator.pushReplacementNamed(context, "/home");
+        }
 //          debugDumpApp();
-        },
-
-      );
+      },
+    );
   }
 }
