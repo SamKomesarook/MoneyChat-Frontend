@@ -4,7 +4,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import 'package:moneychat/model/message.dart';
+import 'package:moneychat/model/session.dart';
 import 'package:moneychat/model/transaction.dart';
+import 'package:xmpp_stone/xmpp_stone.dart' as xmpp;
 
 import '../model/contact.dart';
 import '../model/session.dart';
@@ -25,12 +27,12 @@ class _ChatState extends State<Chat> {
   Contact _contact;
   ScrollController _messageListController = new ScrollController();
 
-  final TextEditingController _textEditingController =
-      new TextEditingController();
-
   _ChatState(Contact contact) {
     _contact = contact;
   }
+
+  final TextEditingController _textEditingController =
+      new TextEditingController();
 
   void _sendMoney() {
     showModalBottomSheet(
@@ -175,29 +177,28 @@ class _ChatState extends State<Chat> {
   }
 
   void _sendMessage() async {
-    //TODO: send message http/xmpp POST
-//    final String apiURL = "Enter a valid URL"; // TODO: Update, Server URL
-//
-//    final response = await http.post(apiURL, body: {
-//      "type": "normal",
-//      "from": Session.shared.user.userAccount, // TODO: Set in the User class
-//      "to": "user1@localhost", // TODO: Update, to contact
-//      "subject": "",
-//      "body": _textEditingController.value.text
-//    });
-
-    // Frontend only message
+    //Frontend add message to
     Message message = new Message(_textEditingController.value.text,
         DateTime.now(), MessageType.sentMessage);
-    Session.shared.user.newMessageSent(message, _contact);
 
-    //TODO: testing echo message sent
-    Message message2 = new Message(_textEditingController.value.text,
-        DateTime.now(), MessageType.receivedMessage);
-    Session.shared.user.newMessageSent(message2, _contact);
+    // Get the contact Jid
+    var receiver = _contact.xmppAddress;
+    var receiverJid = xmpp.Jid.fromFullJid(receiver);
+    // Send message
+    xmpp.MessageHandler messageHandler =
+    xmpp.MessageHandler.getInstance(Session.shared.user.connection);
+    messageHandler.sendMessage(receiverJid, message.content);
+
+    // Add to frontend list
+    Session.shared.user.newMessageSent(message, _contact);
 
     // Clear the message input
     _textEditingController.clear();
+
+    // Refresh message list
+    setState(() {
+      buildMessageList();
+    });
   }
 
   Widget buildMessageList() {
@@ -341,10 +342,12 @@ class _ChatState extends State<Chat> {
                 child: Icon(Icons.send),
                 onPressed: () {
                   if (_textEditingController.value.text.isNotEmpty) {
+                    // send message
+                    _sendMessage();
+                    // refresh
                     setState(() {
                       buildMessageList();
                     });
-                    _sendMessage();
                   }
                 },
               ),

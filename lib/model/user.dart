@@ -1,13 +1,17 @@
 import 'dart:collection';
 
 import 'package:moneychat/model/conversation.dart';
+import 'package:xmpp_stone/xmpp_stone.dart' as xmpp;
 
 import 'contact.dart';
 import 'message.dart';
+import 'messages_listener.dart';
 import 'wallet.dart';
 
 class User {
-  String _userAccount;
+  xmpp.Connection _connection;
+  xmpp.MessagesListener _listener;
+  String _xmppAddress;
   String _firstName;
   String _lastName;
   String _imgPath;
@@ -15,7 +19,9 @@ class User {
   HashMap<int, Contact> _contacts;
   HashMap<int, Conversation> _conversations;
 
-  User(String firstName, String lastName, String imgPath, Wallet wallet) {
+  User(String xmppAddress, String firstName, String lastName, String imgPath,
+      Wallet wallet) {
+    _xmppAddress = xmppAddress;
     _firstName = firstName;
     _lastName = lastName;
     _imgPath = imgPath;
@@ -23,6 +29,18 @@ class User {
     _contacts = new HashMap<int, Contact>();
     createContacts();
     _conversations = new HashMap<int, Conversation>();
+    connectToServer('david', '34.123.149.202', '1234');
+  }
+
+  void connectToServer(String accountName, String host, String password) {
+    var account = xmpp.XmppAccountSettings(
+        _xmppAddress, accountName, host, password, 5222,
+        host: host, resource: 'xmppstone');
+    _connection = xmpp.Connection(account);
+    _connection.connect();
+
+    _listener = new MessagesListener();
+    ConnectionStateChangedListener(_connection, _listener);
   }
 
   void createContacts() {
@@ -42,8 +60,11 @@ class User {
         'assets/images/profile_pictures/sarah_fredricks.jpeg');
     _contacts[6] = new Contact(6, 'Jessica', 'Harris', '0123456789',
         'assets/images/profile_pictures/jessica_harris.jpeg');
-    _contacts[7] = new Contact(7, 'Paul', 'Lee', '0123456789',
+
+    _contacts[7] = new Contact(7, 'William', 'Yu', '0123456789',
         'assets/images/profile_pictures/paul_lee.jpeg');
+    _contacts[7].xmppAddress = 'will@34.123.149.202';
+
     _contacts[8] = new Contact(8, 'Vivian', 'Morrison', '0123456789',
         'assets/images/profile_pictures/vivian_morrison.jpeg');
     _contacts[9] = new Contact(9, 'Jordan', 'Rogers', '0123456789',
@@ -89,5 +110,9 @@ class User {
 
   HashMap<int, Conversation> get conversations => _conversations;
 
-  String get userAccount => _userAccount;
+  String get xmppAddress => _xmppAddress;
+
+  xmpp.MessagesListener get listener => _listener;
+
+  xmpp.Connection get connection => _connection;
 }

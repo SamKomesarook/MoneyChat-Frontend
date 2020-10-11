@@ -1,4 +1,5 @@
 class Contact {
+  String _xmppAddress;
   int _ID;
   String _firstName;
   String _lastName;
@@ -8,10 +9,10 @@ class Contact {
   Contact(int ID, String firstName, String lastName, String phoneNumber,
       String imagePath) {
     _ID = ID;
-    this._firstName = firstName;
-    this._lastName = lastName;
-    this._phoneNumber = phoneNumber;
-    this._imagePath = imagePath;
+    _firstName = firstName;
+    _lastName = lastName;
+    _phoneNumber = phoneNumber;
+    _imagePath = imagePath;
   }
 
   int get ID => _ID;
@@ -49,5 +50,11 @@ class Contact {
 
   set firstName(String value) {
     _firstName = value;
+  }
+
+  String get xmppAddress => _xmppAddress;
+
+  set xmppAddress(String value) {
+    _xmppAddress = value;
   }
 }
