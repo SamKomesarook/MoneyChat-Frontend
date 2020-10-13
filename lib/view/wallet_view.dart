@@ -185,7 +185,8 @@ class _WalletViewState extends State<WalletView> {
   Widget displayPayDivider() {
     return Column(
       children: <Widget>[
-        Text('Pay With:', textAlign: TextAlign.left, style: subheadingStyle),
+        Text('Add to Balance',
+            textAlign: TextAlign.left, style: subheadingStyle),
         SizedBox(
           height: 20.0,
           width: 350.0,

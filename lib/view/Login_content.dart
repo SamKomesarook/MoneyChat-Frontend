@@ -244,20 +244,10 @@ class _SignInPageState extends State<SignInPage> {
           Wallet wallet = new Wallet(150.0);
 
           // Create user
-          User user = new User(username,
-              'assets/images/profile_pictures/john_smith.jpeg', wallet);
+          User user =
+              new User(username, 'assets/images/profile_pictures/', wallet);
           Session.shared.user = user;
           Session.shared.user.connectToServer(password);
-
-          // Add a transaction to test
-//          Session.shared.user.wallet.addTransaction(
-//              new Transaction(Session.shared.user.contacts[5], 25.00, false));
-//          Session.shared.user.wallet.addTransaction(
-//              new Transaction(Session.shared.user.contacts[2], 15.00, true));
-//          Session.shared.user.wallet.addTransaction(
-//              new Transaction(Session.shared.user.contacts[3], 5.00, true));
-//          Session.shared.user.wallet.addTransaction(
-//              new Transaction(Session.shared.user.contacts[7], 20.00, true));
 
           Navigator.pushReplacementNamed(context, "/home");
         }

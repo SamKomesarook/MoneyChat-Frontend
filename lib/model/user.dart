@@ -21,7 +21,7 @@ class User {
   User(String username, String imgPath, Wallet wallet) {
     _xmppAddress = username + '@34.123.149.202';
     _username = username;
-    _imgPath = imgPath;
+    _imgPath = imgPath + username + '.jpg';
     _wallet = wallet;
     _contacts = new HashMap<int, Contact>();
     createContacts();
@@ -54,15 +54,27 @@ class User {
   }
 
   void createContacts() {
+    if (this.firstName == 'will') {
+      _contacts[0] = new Contact(
+          0,
+          'david@34.123.149.202',
+          'David',
+          'Manolitsas',
+          '0123456789',
+          'assets/images/profile_pictures/david.jpg');
+
+      print(_contacts[0].xmppAddress);
+    } else {
+      _contacts[0] = new Contact(0, 'will@34.123.149.202', 'William', 'Yu',
+          '0123456789', 'assets/images/profile_pictures/will.jpg');
+
+      print(_contacts[0].xmppAddress);
+    }
+
     // Mock Contact List
-    _contacts[0] = new Contact(0, 'will@34.123.149.202', 'William', 'Yu',
-        '0123456789', 'assets/images/profile_pictures/paul_lee.jpeg');
-
-    print(_contacts[0].xmppAddress);
-
-//    _contacts[2] = new Contact(1, 'Rebecca', 'Ang', '0123456789',
+//    _contacts[1] = new Contact(1, 'Rebecca', 'Ang', '0123456789',
 //        'assets/images/profile_pictures/rebecca_ang.jpeg');
-//    _contacts[3] = new Contact(2, 'Chris', 'Braden', '0123456789',
+//    _contacts[2] = new Contact(2, 'Chris', 'Braden', '0123456789',
 //        'assets/images/profile_pictures/chris_braden.jpeg');
 //    _contacts[4] = new Contact(3, 'Steph', 'Foster', '0123456789',
 //        'assets/images/profile_pictures/steph_foster.jpeg');

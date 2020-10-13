@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -25,14 +27,24 @@ class Chat extends StatefulWidget {
 
 class _ChatState extends State<Chat> {
   Contact _contact;
+  int _messageSize;
+
   ScrollController _messageListController = new ScrollController();
 
   _ChatState(Contact contact) {
     _contact = contact;
+    if (Session.shared.user.conversations.containsKey(_contact.ID)) {
+      _messageSize =
+          Session.shared.user.conversations[_contact.ID].messages.length;
+    } else {
+      _messageSize = 0;
+    }
+
+    print('$_messageSize \n\n\n');
   }
 
   final TextEditingController _textEditingController =
-      new TextEditingController();
+  new TextEditingController();
 
   void _sendMoney() {
     showModalBottomSheet(
@@ -112,7 +124,7 @@ class _ChatState extends State<Chat> {
                     if (amount <= Session.shared.user.wallet.balance) {
                       // Payment Successful
                       Transaction transaction =
-                          new Transaction(_contact, amount, false);
+                      new Transaction(_contact, amount, false);
                       Session.shared.user.wallet.addTransaction(transaction);
 
                       // Add message to conversation history
@@ -186,7 +198,7 @@ class _ChatState extends State<Chat> {
     var receiverJid = xmpp.Jid.fromFullJid(receiver);
     // Send message
     xmpp.MessageHandler messageHandler =
-        xmpp.MessageHandler.getInstance(Session.shared.user.connection);
+    xmpp.MessageHandler.getInstance(Session.shared.user.connection);
     messageHandler.sendMessage(receiverJid, message.content);
 
     // Add to frontend list
@@ -206,7 +218,7 @@ class _ChatState extends State<Chat> {
       return ListView.builder(
           controller: _messageListController,
           itemCount:
-              Session.shared.user.conversations[_contact.ID].messages.length,
+          Session.shared.user.conversations[_contact.ID].messages.length,
           itemBuilder: (context, index) {
             return buildMessageItem(
                 Session.shared.user.conversations[_contact.ID].messages[index]);
@@ -376,6 +388,18 @@ class _ChatState extends State<Chat> {
     );
   }
 
+  void refreshMessageList() {
+    if (Session.shared.user.conversations.containsKey(_contact.ID)) {
+      if (Session.shared.user.conversations[_contact.ID].messages.length >
+          _messageSize) {
+        print('refreshing message state \n\n\n');
+        setState(() {
+          buildMessageList();
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (Session.shared.user.conversations.containsKey(_contact.ID)) {
@@ -384,6 +408,10 @@ class _ChatState extends State<Chat> {
             .jumpTo(_messageListController.position.maxScrollExtent);
       });
     }
+
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      refreshMessageList();
+    });
 
     return Scaffold(
       appBar: buildAppBar(),
