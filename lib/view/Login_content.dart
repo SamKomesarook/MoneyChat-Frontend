@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:moneychat/model/transaction.dart';
 
 import '../model/session.dart';
 import '../model/user.dart';
@@ -245,14 +244,14 @@ class _SignInPageState extends State<SignInPage> {
           Wallet wallet = new Wallet(150.0);
 
           // Create user
-          User user = new User(username, username, 'Smith',
+          User user = new User(username,
               'assets/images/profile_pictures/john_smith.jpeg', wallet);
           Session.shared.user = user;
           Session.shared.user.connectToServer(password);
 
           // Add a transaction to test
-          Session.shared.user.wallet.addTransaction(
-              new Transaction(Session.shared.user.contacts[5], 25.00, false));
+//          Session.shared.user.wallet.addTransaction(
+//              new Transaction(Session.shared.user.contacts[5], 25.00, false));
 //          Session.shared.user.wallet.addTransaction(
 //              new Transaction(Session.shared.user.contacts[2], 15.00, true));
 //          Session.shared.user.wallet.addTransaction(

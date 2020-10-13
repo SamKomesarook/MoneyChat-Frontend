@@ -6,9 +6,10 @@ class Contact {
   String _imagePath;
   String _phoneNumber;
 
-  Contact(int ID, String firstName, String lastName, String phoneNumber,
-      String imagePath) {
+  Contact(int ID, String xmppAddress, String firstName, String lastName,
+      String phoneNumber, String imagePath) {
     _ID = ID;
+    _xmppAddress = xmppAddress;
     _firstName = firstName;
     _lastName = lastName;
     _phoneNumber = phoneNumber;
@@ -53,8 +54,4 @@ class Contact {
   }
 
   String get xmppAddress => _xmppAddress;
-
-  set xmppAddress(String value) {
-    _xmppAddress = value;
-  }
 }

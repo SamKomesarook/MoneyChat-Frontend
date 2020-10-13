@@ -44,7 +44,7 @@ class _WalletViewState extends State<WalletView> {
   }
 
   Widget buildTransaction() {
-    if (_user.wallet.transactions.last == null) {
+    if (_user.wallet.transactions.length == 0) {
       return Text('No previous transactions');
     }
 

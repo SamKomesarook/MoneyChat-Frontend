@@ -97,14 +97,20 @@ class MessagesListener implements xmpp.MessagesListener {
   @override
   void onNewMessage(xmpp.MessageStanza message) {
     if (message.body != null) {
-      //TODO: testing hardcoded contact
-      Message frontendMessage = new Message(
-          message.body, DateTime.now(), MessageType.receivedMessage);
-      Session.shared.user
-          .newMessageSent(frontendMessage, Session.shared.user.contacts[7]);
+      //TODO: testing hardcoded contact, getContact(String contactName) needed
 
-      print(format(
-          'New Message from {color.blue}${message.fromJid.userAtDomain}{color.end} message: {color.red}${message.body}{color.end}'));
+      int index = Session.shared.user
+          .getContactIndex(message.fromJid.userAtDomain.toString());
+
+      if (index >= 0) {
+        Message frontendMessage = new Message(
+            message.body, DateTime.now(), MessageType.receivedMessage);
+        Session.shared.user.newMessageSent(
+            frontendMessage, Session.shared.user.contacts[index]);
+
+        print(format(
+            'New Message from {color.blue}${message.fromJid.userAtDomain}{color.end} message: {color.red}${message.body}{color.end}'));
+      }
     }
   }
 }

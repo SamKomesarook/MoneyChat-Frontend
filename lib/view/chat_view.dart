@@ -404,38 +404,3 @@ class _ChatState extends State<Chat> {
     );
   }
 }
-
-//FocusedMenuHolder(
-//onPressed: () {},
-//menuItems: <FocusedMenuItem>[
-//FocusedMenuItem(title: Text('Camera'), onPressed: () {}),
-//FocusedMenuItem(title: Text('Send Money'), onPressed: () {})
-//],
-//),
-
-//PopupMenuButton<ChatPopupMenu>(
-//elevation: 100.2,
-//onSelected: (ChatPopupMenu result) {
-//setState(() {
-//_selection = result;
-//});
-//},
-//itemBuilder: (BuildContext context) =>
-//<PopupMenuEntry<ChatPopupMenu>>[
-////                showMenu(context: null, position: null, items: null)
-//PopupMenuItem<ChatPopupMenu>(
-//value: ChatPopupMenu.camera,
-//child: Row(
-//mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//children: [Icon(Icons.camera_alt), Text('Camera')],
-//),
-//),
-//PopupMenuItem<ChatPopupMenu>(
-//value: ChatPopupMenu.sendMoney,
-//child: Row(
-//mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//children: [Icon(Icons.attach_money), Text('Send Money')],
-//),
-//),
-//],
-//),
