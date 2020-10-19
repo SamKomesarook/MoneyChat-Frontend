@@ -25,6 +25,11 @@ class Wallet {
   void addTransaction(Transaction transaction) {
     if (transaction != null) {
       _transactions.add(transaction);
+      if (transaction.receivedPayment) {
+        _balance += transaction.amount;
+      } else {
+        _balance -= transaction.amount;
+      }
     }
   }
 }

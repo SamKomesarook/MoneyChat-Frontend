@@ -1,33 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:moneychat/model/user.dart';
-//import 'package:moneychat/view/paypal_login.dart';
 import 'package:moneychat/view/Login_content.dart';
-import 'style/style.dart' as theme;
-import 'view/Register_content.dart';
 
 import 'model/session.dart';
 import 'model/transaction.dart';
 import 'model/user.dart';
 import 'model/wallet.dart';
+import 'style/style.dart' as theme;
+import 'view/Register_content.dart';
 import 'widgets/navigation.dart';
 
 void main() {
-  // Build mock user and data
-  Wallet wallet = new Wallet(150.0);
-  User user = new User('John', 'Smith',
-      'assets/images/profile_pictures/john_smith.jpeg', wallet);
-  Session.shared.user = user;
-
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[5], 25.00, false));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[2], 15.00, true));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[3], 5.00, true));
-  Session.shared.user.wallet
-      .addTransaction(new Transaction(user.contacts[7], 20.00, true));
-
   runApp(MaterialApp(
     title: 'Money Chat',
     home: MainLoginPage(),
@@ -36,6 +20,7 @@ void main() {
     },
   ));
 }
+
 class MainLoginPage extends StatefulWidget {
   MainLoginPage({Key key}) : super(key: key);
 
@@ -75,12 +60,10 @@ class _MainLoginPageState extends State<MainLoginPage>
       * additional option of SingleChildScrollView,
       * Just prevent OverFlow when the KeyBoard appeared.
       * */
-      body:  new SingleChildScrollView(
-
+      body: new SingleChildScrollView(
           child: new Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-
               decoration: new BoxDecoration(
                 gradient: theme.Style.primaryGradient,
               ),
@@ -126,53 +109,52 @@ class _MainLoginPageState extends State<MainLoginPage>
                       children: <Widget>[
                         Expanded(
                             child: new Container(
-
-                              decoration: _currentPage == 0
-                                  ? BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                color: Colors.white,
-                              )
-                                  : null,
-                              child: new Center(
-                                child: new FlatButton(
-                                  onPressed: () {
-                                    _pageController.animateToPage(0,
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.decelerate);
-                                  },
-                                  child: new Text(
-                                    "Existing",
-                                    style: TextStyle(fontSize: 16),
+                          decoration: _currentPage == 0
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
                                   ),
-                                ),
+                                  color: Colors.white,
+                                )
+                              : null,
+                          child: new Center(
+                            child: new FlatButton(
+                              onPressed: () {
+                                _pageController.animateToPage(0,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.decelerate);
+                              },
+                              child: new Text(
+                                "Existing",
+                                style: TextStyle(fontSize: 16),
                               ),
-                            )),
+                            ),
+                          ),
+                        )),
                         Expanded(
                             child: new Container(
-                              decoration: _currentPage == 1
-                                  ? BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                color: Colors.white,
-                              )
-                                  : null,
-                              child: new Center(
-                                child: new FlatButton(
-                                  onPressed: () {
-                                    _pageController.animateToPage(1,
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.decelerate);
-                                  },
-                                  child: new Text(
-                                    "Register",
-                                    style: TextStyle(fontSize: 16),
+                          decoration: _currentPage == 1
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
                                   ),
-                                ),
+                                  color: Colors.white,
+                                )
+                              : null,
+                          child: new Center(
+                            child: new FlatButton(
+                              onPressed: () {
+                                _pageController.animateToPage(1,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.decelerate);
+                              },
+                              child: new Text(
+                                "Register",
+                                style: TextStyle(fontSize: 16),
                               ),
-                            )),
+                            ),
+                          ),
+                        )),
                       ],
                     ),
                   ),

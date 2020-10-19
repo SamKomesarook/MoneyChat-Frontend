@@ -9,6 +9,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  xmpp_stone: ^0.2.9
+  focused_menu: ^1.0.0
   contacts_service: ^0.4.6
   square_in_app_payments: ^1.4.0
   flutter:
