@@ -71,12 +71,12 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Icon(
-              Icons.free_breakfast,
+              Icons.chat_bubble_outline,
               size: 50,
               color: fadedBody,
             ),
             Text(
-              'Wow, such empty',
+              'No previous conversations',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: fadedBody,
