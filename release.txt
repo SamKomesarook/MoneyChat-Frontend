@@ -1,0 +1,11 @@
+## Current Bugs and Issues:
+- The login functioanlity does not verify if the password is correct or not
+  this means the user will still log in even if their password is inccorrect.
+  Even though they login, the user will not successfully be able to message
+  other users as they have not connected to the server correctly.
+
+- New users can not register a new account. There is no connection between
+  registration and the server. Thus users can not make a new account.
+
+- Payments between other users is not setup at the moment. It is just the
+  frontend GUI that is shows the payment 

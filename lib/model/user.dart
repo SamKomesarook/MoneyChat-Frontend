@@ -54,6 +54,11 @@ class User {
   }
 
   void createContacts() {
+    /**
+     *  Mock Data
+     *  The following if-else statement is to test the messaging between contacts.
+     *  Currently the app does not retrieve contacts from the server.
+     */
     if (this.firstName == 'will') {
       _contacts[0] = new Contact(
           0,
@@ -71,7 +76,10 @@ class User {
       print(_contacts[0].xmppAddress);
     }
 
-    // Mock Contact List
+    /**
+     * Mock Contact List
+     * The following code can be uncommented to test the contact list with more users
+     */
 //    _contacts[1] = new Contact(1, 'Rebecca', 'Ang', '0123456789',
 //        'assets/images/profile_pictures/rebecca_ang.jpeg');
 //    _contacts[2] = new Contact(2, 'Chris', 'Braden', '0123456789',
